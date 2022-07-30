@@ -40,10 +40,10 @@ async function getWeather() {
     weatherDescription.textContent = data.weather[0].description;
 
     if (lang == 'en') {
-        wind.textContent = `wind: ${data.wind.speed} m/s`;
-        humidity.textContent = `humidity: ${data.main.humidity}%`;
+        wind.textContent = `Wind speed: ${data.wind.speed} m/s`;
+        humidity.textContent = `Humidity: ${data.main.humidity}%`;
     } else {
-        wind.textContent = `ветер: ${data.wind.speed} м/с`;
+        wind.textContent = `Скорость ветра: ${data.wind.speed} м/с`;
         humidity.textContent = `влажность: ${data.main.humidity}%`;
     }
 
