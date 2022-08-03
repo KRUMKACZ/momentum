@@ -12,7 +12,7 @@ playList.forEach((el, index) => {
 const setPlayPrev = document.querySelector('.play-prev');
 const play = document.querySelector('.play');
 const setPlayNext = document.querySelector('.play-next');
-const activePlay = document.querySelectorAll('.play-item');
+const playItem = document.querySelectorAll('.play-item');
 
 const audio = new Audio();
 let isPlay = false; // Флаг проигрывания музыки
@@ -24,8 +24,7 @@ function playAudio() {
     audio.src = playList[playNum].src;    // Ссылка на трек
     audio.currentTime = 0;                // Всегда начинать трек с начала
     audio.play();                         // Замустить проигрыватель 
-    //activePlay.classList.remove('play-item__active');
-    activePlay[playNum].classList.add('play-item__active'); // Добавляем класс активной мелодии
+    playItem[playNum].classList.add('play-item__active'); // Добавляем класс активной мелодии
 }
 
 // Пауза плеера
@@ -58,6 +57,7 @@ function playPrev() {
         playAudio();    // Запускаем музыку
         isPlay = true;  // Музыка включена 
         play.classList.add('pause');
+        playItem[playNum + 1].classList.remove('play-item__active'); // Удаляем класс активности предыдущей мелодии мелодии
     }
     else {
         console.log('Плейлист закончился');
@@ -70,6 +70,7 @@ function playNext() {
         playAudio();    // Запускаем музыку
         isPlay = true;  // Музыка включена 
         play.classList.add('pause');
+        playItem[playNum - 1].classList.remove('play-item__active'); // Удаляем класс активности предыдущей мелодии мелодии
     } else {
         console.log('Плейлист закончился');
     }
@@ -79,13 +80,14 @@ play.addEventListener('click', controls);
 setPlayPrev.addEventListener('click', playPrev);
 setPlayNext.addEventListener('click', playNext);
 
+// Запуск проигрывателя при клике на название трека
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('play-item')) {
         playNum = event.target.attributes.value.value; // Атрибут равный номеру мелодии в массиве
         isPlay = true;                  // Музыка включена 
+        document.querySelectorAll('.play-list .play-item__active').forEach(li => li.classList.remove('play-item__active')); // Удаляем класс активности при случайном выборе мелодии
         playAudio();                    // Запускаем музыку
         play.classList.add('pause');    // Меняем вид кнопки проигрывания
-
     }
 });
 
