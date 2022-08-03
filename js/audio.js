@@ -56,6 +56,8 @@ function playPrev() {
     if (playNum <= (playList.length - 1) && playNum > 0) {
         playNum--;
         playAudio();    // Запускаем музыку
+        isPlay = true;  // Музыка включена 
+        play.classList.add('pause');
     }
     else {
         console.log('Плейлист закончился');
@@ -66,6 +68,8 @@ function playNext() {
     if (playNum < (playList.length - 1)) {
         playNum++;
         playAudio();    // Запускаем музыку
+        isPlay = true;  // Музыка включена 
+        play.classList.add('pause');
     } else {
         console.log('Плейлист закончился');
     }

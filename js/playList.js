@@ -10,11 +10,6 @@ const playList = [
         duration: '03:50'
     },
     {
-        title: 'Ennio Morricone',
-        src: '../assets/sounds/Ennio Morricone.mp3',
-        duration: '01:37'
-    },
-    {
         title: 'Summer Wind',
         src: '../assets/sounds/Summer Wind.mp3',
         duration: '01:50'
