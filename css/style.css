@@ -38,7 +38,14 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 120px;
-  margin-bottom: 28px;
+  margin-bottom: 14px;
+  /* 28 */
+}
+
+.progressbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .play-list {
