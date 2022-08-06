@@ -33,6 +33,11 @@ body {
   padding: 20px;
 }
 
+.volume-range {
+  display: flex;
+  margin-bottom: 10px;
+}
+
 .player-controls {
   display: flex;
   align-items: center;
@@ -46,6 +51,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.progress-audio:hover {
+  cursor: pointer;
+}
+
+.name-and-time {
+  display: flex;
+  font-size: 14px;
+}
+
+.timeAudio {
+  display: flex;
 }
 
 .play-list {

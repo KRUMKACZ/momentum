@@ -13,14 +13,21 @@
 <body>
   <header class="header">
     <div class="player">
+      <input class="volume-range" min="0" max="100" value="10" type="range">
       <div class="player-controls">
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
         <button class="play-next player-icon"></button>
       </div>
       <div class="progressbar">
-        <label class="name-audio" for="name-audio"></label>
-        <progress id="name-audio" max="100" value="70"> 70% </progress>
+        <label class="name-and-time" for="progress-audio">
+          <div class="timeAudio">
+            <div class="current-time"></div>
+            <div class="audio-duration"></div>
+          </div>
+          <div class="name-audio"><i> Track not selected...</i></div>
+        </label>
+        <progress id="progress-audio" class="progress-audio" max="100" value="0"></progress>
       </div>
       <ul class="play-list"></ul>
     </div>
