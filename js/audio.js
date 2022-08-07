@@ -154,11 +154,18 @@ progressBar.addEventListener('click', (el) => {
     if (isPlay) { playAudio(currentTimeBar); }
 });
 
+// Выключение звука по клику на иконку с изменением иконки. Включение звука при повторном клике
+volumUpLine.onclick = () => {
+    volumUpLine.classList.toggle('volume-up-line-mute');
+    audio.volume > 0 ? audio.volume = 0 : audio.volume = (volumeRange.value / 100).toFixed(2);
+};
+
+// Изменение громкости звука при перемещении ползунка
 volumeRange.onchange = () => {
     audio.volume = (volumeRange.value / 100).toFixed(2);
 };
 
-volumUpLine.onclick = () => {
-    volumUpLine.classList.toggle('volume-up-line-mute');
-    audio.volume > 0 ? audio.volume = 0 : audio.volume = (volumeRange.value / 100).toFixed(2);
+// Изменение иконки при снижении громкости до 0
+audio.onvolumechange = () => {
+    audio.volume == 0 ? volumUpLine.classList.add('volume-up-line-mute') : volumUpLine.classList.remove('volume-up-line-mute');
 };
