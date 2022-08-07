@@ -19,6 +19,7 @@ const audioDuration = document.querySelector('.audio-duration');
 const playItem = document.querySelectorAll('.play-item');
 const progressBar = document.querySelector('.progress-audio');
 const volumeRange = document.querySelector('.volume-range');
+const volumUpLine = document.querySelector('.volume-up-line');
 
 const audio = new Audio();
 let isPlay = false; // Флаг проигрывания музыки по умолчанию
@@ -155,5 +156,9 @@ progressBar.addEventListener('click', (el) => {
 
 volumeRange.onchange = () => {
     audio.volume = (volumeRange.value / 100).toFixed(2);
-    console.log(volumeRange.value);
+};
+
+volumUpLine.onclick = () => {
+    volumUpLine.classList.toggle('volume-up-line-mute');
+    audio.volume > 0 ? audio.volume = 0 : audio.volume = (volumeRange.value / 100).toFixed(2);
 };

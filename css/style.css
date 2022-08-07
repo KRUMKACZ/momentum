@@ -33,9 +33,38 @@ body {
   padding: 20px;
 }
 
+.volume-panel {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.volume-up-line {
+  width: 24px;
+  height: 24px;
+  background: 0 0;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.volume-up-line {
+  background-image: url("../assets/svg/icons/volume-up-fill.svg");
+}
+
+.volume-up-line-mute {
+  background-image: url("../assets/svg/icons/volume-mute-line.svg");
+}
+
 .volume-range {
   display: flex;
-  margin-bottom: 10px;
+  margin-left: 5px;
+  accent-color: white;
+}
+
+.volume-range:hover {
+  accent-color: white;
+  cursor: pointer;
 }
 
 .player-controls {
@@ -51,6 +80,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.progress-audio {
+  accent-color: ghostwhite;
 }
 
 .progress-audio:hover {
