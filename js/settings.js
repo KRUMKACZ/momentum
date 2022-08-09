@@ -7,6 +7,10 @@ const timeSetting = document.querySelector('.time');
 const dateSetting = document.querySelector('.date');
 const greetingSetting = document.querySelector('.greeting');
 const greetingNameSetting = document.querySelector('.name');
+const quoteSetting = document.querySelector('.quote__item');
+
+const weatherSetting = document.querySelector('.weather');
+const audioSetting = document.querySelector('.player');
 
 
 const state = {
@@ -81,12 +85,14 @@ switchTime.onclick = function () {
     this.classList.toggle('switch-on');
     this.classList.contains('switch-on') ? setLocalStorageSettings('switchTime', 1) : setLocalStorageSettings('switchTime', 0);
     !this.classList.contains('switch-on') ? timeSetting.classList.add('hidden') : timeSetting.classList.remove('hidden');
+    timeSetting.style.transition = 'all .5s linear';
 };
 
 switchDate.onclick = function () {
     this.classList.toggle('switch-on');
     this.classList.contains('switch-on') ? setLocalStorageSettings('switchDate', 1) : setLocalStorageSettings('switchDate', 0);
     !this.classList.contains('switch-on') ? dateSetting.classList.add('hidden') : dateSetting.classList.remove('hidden');
+    dateSetting.style.transition = 'all .5s linear';
 };
 
 switchGreeting.onclick = function () {
@@ -99,21 +105,29 @@ switchGreeting.onclick = function () {
         greetingSetting.classList.remove('hidden');
         greetingNameSetting.classList.remove('hidden');
     }
+    greetingSetting.style.transition = 'all .5s linear';
+    greetingNameSetting.style.transition = 'all .5s linear';
 };
 
 switchQuote.onclick = function () {
     this.classList.toggle('switch-on');
     this.classList.contains('switch-on') ? setLocalStorageSettings('switchQuote', 1) : setLocalStorageSettings('switchQuote', 0);
+    !this.classList.contains('switch-on') ? quoteSetting.classList.add('hidden') : quoteSetting.classList.remove('hidden');
+    quoteSetting.style.transition = 'all .5s linear';
 };
 
 switchWeather.onclick = function () {
     this.classList.toggle('switch-on');
     this.classList.contains('switch-on') ? setLocalStorageSettings('switchWeather', 1) : setLocalStorageSettings('switchWeather', 0);
+    !this.classList.contains('switch-on') ? weatherSetting.classList.add('hidden') : weatherSetting.classList.remove('hidden');
+    weatherSetting.style.transition = 'all .5s linear';
 };
 
 switchAudio.onclick = function () {
     this.classList.toggle('switch-on');
     this.classList.contains('switch-on') ? setLocalStorageSettings('switchAudio', 1) : setLocalStorageSettings('switchAudio', 0);
+    !this.classList.contains('switch-on') ? audioSetting.classList.add('hidden') : audioSetting.classList.remove('hidden');
+    audioSetting.style.transition = 'all .5s linear';
 };
 
 switchTodolist.onclick = function () {

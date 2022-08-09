@@ -2,6 +2,10 @@ const changeQuote = document.querySelector('.change-quote');
 const qoute = document.querySelector('.quote');
 const author = document.querySelector('.author');
 
+const quoteItem = document.querySelector('.quote__item');
+
+localStorage.getItem('switchQuote') == 0 ? quoteItem.classList.add('hidden') : quoteItem.classList.remove('hidden');
+
 async function getQuotes() {
     const quotes = 'assets/json/quoteOfTheDay.json';
     const res = await fetch(quotes);

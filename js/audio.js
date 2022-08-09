@@ -1,6 +1,9 @@
 import playList from './playList.js';
 const playListContainer = document.querySelector('.play-list');
 
+const playerSetting = document.querySelector('.player');
+localStorage.getItem('switchAudio') == 0 ? playerSetting.classList.add('hidden') : playerSetting.classList.remove('hidden');
+
 // Присваиваем значение value каждому треку в соответствии с положением в playList
 playList.forEach((el, index) => {
     let li = document.createElement('li');

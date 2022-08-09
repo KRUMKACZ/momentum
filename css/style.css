@@ -34,9 +34,7 @@ body {
 }
 
 .hidden {
-  visibility: hidden;
-  transition: end 1s linear;
-  
+  opacity: 0;
 }
 
 .volume-panel {

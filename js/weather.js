@@ -5,6 +5,9 @@ const wind = document.querySelector('.wind');
 const humidity = document.querySelector('.humidity');
 const city = document.querySelector('.city');
 
+const weatherSettingHidden = document.querySelector('.weather');
+localStorage.getItem('switchWeather') == 0 ? weatherSettingHidden.classList.add('hidden') : weatherSettingHidden.classList.remove('hidden');
+
 
 // Сохранение введенного имени в Local Storage
 function setCityWeather() {
