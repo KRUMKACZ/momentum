@@ -10,6 +10,10 @@ const time = document.querySelector('.time');
 const date = document.querySelector('.date');
 const greeting = document.querySelector('.greeting');
 
+localStorage.getItem('switchTime') == 0 ? time.classList.add('hidden') : time.classList.remove('hidden');
+localStorage.getItem('switchDate') == 0 ? date.classList.add('hidden') : date.classList.remove('hidden');
+localStorage.getItem('switchGreeting') == 0 ? greeting.classList.add('hidden') : greeting.classList.remove('hidden');
+
 function showDate(getTimeAndDate) {
     let getDay = getTimeAndDate.getDay(); // Номер текущего дня начиная с 0 (Sunday)
     const options = { month: 'long', day: 'numeric' };

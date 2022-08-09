@@ -33,6 +33,12 @@ body {
   padding: 20px;
 }
 
+.hidden {
+  visibility: hidden;
+  transition: end 1s linear;
+  
+}
+
 .volume-panel {
   display: flex;
   align-items: center;
@@ -345,8 +351,8 @@ body {
 
 .settings__panel {
   position: fixed;
-  width: 240px;
-  height: 300px;
+  width: 300px;
+  height: 320px;
   background-color: #293241;
   padding: 15px;
   border-radius: 4px;
@@ -357,7 +363,7 @@ body {
   transition: .2s all linear;
 }
 
-.settings__item {
+.settings__block {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -365,15 +371,20 @@ body {
   font-size: 14px;
 }
 
-.settings__item>div {
+.settings__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings__block>div {
   margin-bottom: 12px;
 }
 
-.settings__item>div:first-child {
+.settings__block>div:first-child {
   margin-top: 12px;
 }
 
-.settings__item>div:last-child {
+.settings__block>div:last-child {
   margin-bottom: 0px;
 }
 
