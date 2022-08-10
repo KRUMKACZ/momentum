@@ -67,8 +67,11 @@ function getLocalStorageSettings() {
     settingsArray.name.forEach((elSet, index) => {
         if (!localStorage.getItem(elSet)) {
             setLocalStorageSettings(elSet, 1);
+            settingsArray.property[index].classList.add('switch-on');
         } else if (localStorage.getItem(elSet) == 1) {
             settingsArray.property[index].classList.add('switch-on');
+        } else {
+            settingsArray.property[index].classList.remove('switch-on');
         }
     });
 }
@@ -134,7 +137,6 @@ switchTodolist.onclick = function () {
     this.classList.toggle('switch-on');
     this.classList.contains('switch-on') ? setLocalStorageSettings('switchTodolist', 1) : setLocalStorageSettings('switchTodolist', 0);
 };
-
 
 // Открываем панель
 settingsButton.onclick = () => {

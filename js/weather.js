@@ -4,6 +4,7 @@ const weatherDescription = document.querySelector('.weather-description');
 const wind = document.querySelector('.wind');
 const humidity = document.querySelector('.humidity');
 const city = document.querySelector('.city');
+const weatherContent = document.querySelector('.weather-content');
 
 const weatherSettingHidden = document.querySelector('.weather');
 localStorage.getItem('switchWeather') == 0 ? weatherSettingHidden.classList.add('hidden') : weatherSettingHidden.classList.remove('hidden');
@@ -31,7 +32,7 @@ window.addEventListener('load', getCityWeather);
 
 async function getWeather() {
     let keyAPI = '5c10fcf2508db1dee5a0feb5c3fd0b43';
-    let lang = 'ru';
+    let lang = 'en';
     let city = getCityWeather(); // Устанавливаем город погоды из localStorage
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${lang}&appid=${keyAPI}&units=metric`;
     const res = await fetch(url);
@@ -53,7 +54,8 @@ async function getWeather() {
             humidity.textContent = `Влажность: ${humidityvalue}%`;
         }
     } else {
-        wind.textContent = `Введены некорректные данные!`;
+        weatherContent.textContent = `Введены некорректные данные!`;
+        //wind.textContent = `Введены некорректные данные!`;
         // console.log('Введены некорректные данные');
     }
 

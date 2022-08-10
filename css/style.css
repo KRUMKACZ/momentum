@@ -201,10 +201,16 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  row-gap: 5px;
-  width: 180px;
-  min-height: 180px;
+  row-gap: 15px;
+  width: 230px;
   text-align: left;
+}
+
+.weather-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
 }
 
 .weather-error {
