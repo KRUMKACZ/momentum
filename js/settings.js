@@ -12,35 +12,67 @@ const quoteSetting = document.querySelector('.quote__item');
 const weatherSetting = document.querySelector('.weather');
 const audioSetting = document.querySelector('.player');
 
+let languageSettings = localStorage.getItem('switchLanguage');
 
 const state = {
-    name: 'Settings',
-    language: 'en',
+    name: ['Settings', 'Настройки'],
     photoSource: 'github',
     blocks: ['Language', 'Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audio', 'Todolist'],
     blocksRu: ['Язык', 'Время', 'Дата', 'Приветствие', 'Цитата', 'Погода', 'Аудио', 'Дела']
 };
 
-settingsHeader.textContent = state.name;
-
 // Присваиваем значение value каждому треку в соответствии с положением в playList
-state.blocks.forEach((el, index) => {
-    let blocksSettings = document.createElement('div');
-    let blocksName = document.createElement('div');
-    let setValue = document.createElement('div');
-    let switchBtn = document.createElement('div');
+function createSettings() {
+    state.blocks.forEach((el, index) => {
+        let blocksSettings = document.createElement('div');
+        let blocksName = document.createElement('div');
+        let setValue = document.createElement('div');
+        let switchBtn = document.createElement('div');
 
-    blocksSettings.classList.add('settings__item');
-    blocksName.classList.add('settings-name');
-    setValue.classList.add('value-' + state.blocks[index].toLowerCase());
-    switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase(), 'switch-btn');
+        blocksSettings.classList.add('settings__item');
+        blocksName.classList.add('settings-name');
+        setValue.classList.add('value-' + state.blocks[index].toLowerCase());
+        switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase(), 'switch-btn');
 
-    blocksName.textContent = el;
-    blocksSettings.appendChild(blocksName);
-    setValue.appendChild(switchBtn);
-    blocksSettings.appendChild(setValue);
-    settingsBlock.append(blocksSettings);
-});
+        if (el == 'Language' && languageSettings == 'en') {
+            switchBtn.textContent = 'Eng';
+            settingsHeader.textContent = state.name[0];
+        } else if (el == 'Language' && languageSettings == 'ru') {
+            switchBtn.textContent = 'Rus';
+            settingsHeader.textContent = state.name[1];
+        }
+
+        // Название блока с настройками по умолчанию Eng
+        languageSettings == 'en' ? blocksName.textContent = el : blocksName.textContent = state.blocksRu[index]; // Название блока с настройками Rus
+
+        blocksSettings.appendChild(blocksName);
+        setValue.appendChild(switchBtn);
+        blocksSettings.appendChild(setValue);
+        settingsBlock.append(blocksSettings);
+    });
+}
+
+createSettings();
+
+const settingsName = document.querySelectorAll('.settings-name');
+const switchBtn = document.querySelector('.switch-btn');
+
+function changeLanguage() {
+    languageSettings = localStorage.getItem('switchLanguage');
+    if (languageSettings == 'en') {
+        state.blocks.forEach((el, index) => {
+            settingsName[index].textContent = el;
+        });
+        switchBtn.textContent = 'Eng';
+        settingsHeader.textContent = state.name[0];
+    } else {
+        state.blocksRu.forEach((el, index) => {
+            settingsName[index].textContent = el;
+        });
+        switchBtn.textContent = 'Rus';
+        settingsHeader.textContent = state.name[1];
+    }
+}
 
 // Сохраняем введенные данные в локальное хранилище
 function setLocalStorageSettings(item, value) {
@@ -66,9 +98,13 @@ const settingsArray = {
 function getLocalStorageSettings() {
     settingsArray.name.forEach((elSet, index) => {
         if (!localStorage.getItem(elSet)) {
-            setLocalStorageSettings(elSet, 1);
-            settingsArray.property[index].classList.add('switch-on');
-        } else if (localStorage.getItem(elSet) == 1) {
+            if (elSet == 'switchLanguage') {
+                setLocalStorageSettings(elSet, 'en');
+            } else {
+                setLocalStorageSettings(elSet, 1);
+                settingsArray.property[index].classList.add('switch-on');
+            }
+        } else if (localStorage.getItem(elSet) == 1 || localStorage.getItem(elSet) == 'en') {
             settingsArray.property[index].classList.add('switch-on');
         } else {
             settingsArray.property[index].classList.remove('switch-on');
@@ -78,10 +114,10 @@ function getLocalStorageSettings() {
 // Запускаем перебор настроек после загрузки страницы
 window.addEventListener('load', getLocalStorageSettings);
 
-
 switchLanguage.onclick = function () {
     this.classList.toggle('switch-on');
-    this.classList.contains('switch-on') ? setLocalStorageSettings('switchLanguage', 1) : setLocalStorageSettings('switchLanguage', 0);
+    this.classList.contains('switch-on') ? setLocalStorageSettings('switchLanguage', 'en') : setLocalStorageSettings('switchLanguage', 'ru');
+    changeLanguage();
 };
 
 switchTime.onclick = function () {
