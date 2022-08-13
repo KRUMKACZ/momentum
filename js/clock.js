@@ -1,4 +1,10 @@
-let language = 'en-En'; // Язык приложения
+changeLanguageClick = document.querySelector('.switch-language');
+
+function changeLanguageClock() {
+    let languageClock = localStorage.getItem('switchLanguage');
+    languageClock == 'en' ? language = 'en-En' : language = 'ru-Ru';
+}
+changeLanguageClock();
 
 const arrDayEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const arrDayRu = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
@@ -54,3 +60,9 @@ function showTime() {
 }
 showTime();
 
+function changelanguageClockAndTime() {
+    changeLanguageClock();
+    showTime();
+}
+
+changeLanguageClick.addEventListener('click', changelanguageClockAndTime);

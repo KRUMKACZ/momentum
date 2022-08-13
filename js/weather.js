@@ -32,13 +32,13 @@ window.addEventListener('load', getCityWeather);
 
 async function getWeather() {
     let keyAPI = '5c10fcf2508db1dee5a0feb5c3fd0b43';
-    let lang = 'en';
+    let lang = localStorage.getItem('switchLanguage');
     let city = getCityWeather(); // Устанавливаем город погоды из localStorage
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${lang}&appid=${keyAPI}&units=metric`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.cod);
-    console.log(data);
+    //console.log(data.cod);
+    //console.log(data);
     if (data.cod == 200) {
         weatherIcon.className = 'weather-icon owf';
         weatherIcon.classList.add(`owf-${data.weather[0].id}`);
@@ -54,7 +54,7 @@ async function getWeather() {
             humidity.textContent = `Влажность: ${humidityvalue}%`;
         }
     } else {
-        weatherContent.textContent = `Введены некорректные данные!`;
+        weatherContent.textContent = `Incorrect data entered!`;
         //wind.textContent = `Введены некорректные данные!`;
         // console.log('Введены некорректные данные');
     }
@@ -71,3 +71,4 @@ function setCity(event) {
 
 document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity);
+changeLanguageClick.addEventListener('click', getWeather);
