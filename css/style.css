@@ -11,14 +11,13 @@
 }
 
 body {
-  min-width: 480px;
+  min-width: 390px;
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
   color: #fff;
   text-align: center;
-  background: url("../assets/img/bg.jpg") rgba(0, 0, 0, 0.5);
-  /* background-size: center/cover;*/
+  background: rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
 }
@@ -101,6 +100,7 @@ body {
 
 .name-and-time {
   display: flex;
+  flex-wrap: wrap;
   font-size: 14px;
 }
 
@@ -437,10 +437,44 @@ body {
 
   .greeting {
     padding: 5px;
+    font-size: 28px;
   }
 
   .name {
     font-size: 32px;
     padding: 5px;
   }
+
+  .weather {
+    width: 160px;
+    font-size: 14px;
+  }
+
+  .player {
+    font-size: 14px;
+    z-index: 10;
+  }
+
+  .time {
+    font-size: 56px;
+    min-height: 40px;
+  }
+
+  .date {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .greeting {
+    font-size: 22px;
+  }
+
+  .name {
+    font-size: 22px;
+  }
+
+  .quote__item {
+    font-size: 14px;
+  }
+
 }
