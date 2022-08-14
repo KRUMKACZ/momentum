@@ -34,14 +34,6 @@ function createSettings() {
         setValue.classList.add('value-' + state.blocks[index].toLowerCase());
         switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase(), 'switch-btn');
 
-        if (el == 'Language' && languageSettings == 'en') {
-            switchBtn.textContent = 'Eng';
-            settingsHeader.textContent = state.name[0];
-        } else if (el == 'Language' && languageSettings == 'ru') {
-            switchBtn.textContent = 'Rus';
-            settingsHeader.textContent = state.name[1];
-        }
-
         // Название блока с настройками по умолчанию Eng
         languageSettings == 'en' ? blocksName.textContent = el : blocksName.textContent = state.blocksRu[index]; // Название блока с настройками Rus
 
@@ -51,7 +43,6 @@ function createSettings() {
         settingsBlock.append(blocksSettings);
     });
 }
-
 createSettings();
 
 const settingsName = document.querySelectorAll('.settings-name');
@@ -94,25 +85,33 @@ const settingsArray = {
 };
 
 // Перебираем массив с настройками и выбираем значения из локального хранилища
-// Если значения отсутствует, устанавливаем 0
+// Если значения отсутствует, устанавливаем 1
 function getLocalStorageSettings() {
     settingsArray.name.forEach((elSet, index) => {
         if (!localStorage.getItem(elSet)) {
             if (elSet == 'switchLanguage') {
                 setLocalStorageSettings(elSet, 'en');
+                switchBtn.textContent = 'Eng';
+                settingsHeader.textContent = state.name[0];
+                settingsArray.property[index].classList.add('switch-on');
             } else {
                 setLocalStorageSettings(elSet, 1);
                 settingsArray.property[index].classList.add('switch-on');
             }
         } else if (localStorage.getItem(elSet) == 1 || localStorage.getItem(elSet) == 'en') {
+            if (elSet == 'switchLanguage') {
+                switchBtn.textContent = 'Eng';
+            }
             settingsArray.property[index].classList.add('switch-on');
         } else {
+            switchBtn.textContent = 'Rus';
             settingsArray.property[index].classList.remove('switch-on');
         }
     });
 }
 // Запускаем перебор настроек после загрузки страницы
 window.addEventListener('load', getLocalStorageSettings);
+
 
 switchLanguage.onclick = function () {
     this.classList.toggle('switch-on');
