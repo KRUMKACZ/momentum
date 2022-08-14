@@ -7,13 +7,17 @@
   <link href="assets/favicon.ico" rel="shortcut icon" />
   <link rel="stylesheet" href="css/owfont-regular.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkBox.css" />
   <title>Momentum</title>
 </head>
 
 <body>
   <header class="header">
     <div class="player">
-      <input class="volume-range" min="0" max="100" value="10" type="range">
+      <div class="volume-panel">
+        <button class="volume-up-line"></button>
+        <input class="volume-range" min="0" max="100" value="10" type="range">
+      </div>
       <div class="player-controls">
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
@@ -33,14 +37,16 @@
     </div>
     <div class="weather">
       <input type="text" class="city" />
-      <i class="weather-icon owf"></i>
-      <div class="weather-error"></div>
-      <div class="description-container">
-        <span class="temperature"></span>
-        <span class="weather-description"></span>
+      <div class="weather-content">
+        <i class="weather-icon owf"></i>
+        <div class="weather-error"></div>
+        <div class="description-container">
+          <span class="temperature"></span>
+          <span class="weather-description"></span>
+        </div>
+        <div class="wind"></div>
+        <div class="humidity"></div>
       </div>
-      <div class="wind"></div>
-      <div class="humidity"></div>
     </div>
   </header>
   <main class="main">
@@ -52,21 +58,33 @@
     <date class="date"></date>
     <div class="greeting-container">
       <span class="greeting"></span>
-      <input type="text" class="name" />
+      <input type="text" class="name" placeholder="" />
     </div>
   </main>
   <footer class="footer">
-    <button class="change-quote"></button>
-    <div>
-      <div class="quote"></div>
-      <div class="author"></div>
+    <button class="settings"></button>
+    <div class="settings__panel">
+      <div class="settings-header"></div>
+      <hr>
+      <div class="settings__block">
+      </div>
     </div>
+    <div class="quote__item">
+      <button class="change-quote"></button>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
+    </div>
+    <div class="block__item"></div>
   </footer>
-  <script src="js/clock.js"></script>
+  <script src="js/settings.js"></script>
   <script src="js/allScript.js"></script>
+  <script src="js/clock.js"></script>
   <script type="module" src="js/audio.js"></script>
   <script src="js/quote.js"></script>
   <script src="js/weather.js"></script>
+  <script src="js/slider.js"></script>
 </body>
 
 </html>

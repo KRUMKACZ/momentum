@@ -1,6 +1,9 @@
 import playList from './playList.js';
 const playListContainer = document.querySelector('.play-list');
 
+const playerSetting = document.querySelector('.player');
+localStorage.getItem('switchAudio') == 0 ? playerSetting.classList.add('hidden') : playerSetting.classList.remove('hidden');
+
 // Присваиваем значение value каждому треку в соответствии с положением в playList
 playList.forEach((el, index) => {
     let li = document.createElement('li');
@@ -19,6 +22,7 @@ const audioDuration = document.querySelector('.audio-duration');
 const playItem = document.querySelectorAll('.play-item');
 const progressBar = document.querySelector('.progress-audio');
 const volumeRange = document.querySelector('.volume-range');
+const volumUpLine = document.querySelector('.volume-up-line');
 
 const audio = new Audio();
 let isPlay = false; // Флаг проигрывания музыки по умолчанию
@@ -153,7 +157,18 @@ progressBar.addEventListener('click', (el) => {
     if (isPlay) { playAudio(currentTimeBar); }
 });
 
+// Выключение звука по клику на иконку с изменением иконки. Включение звука при повторном клике
+volumUpLine.onclick = () => {
+    volumUpLine.classList.toggle('volume-up-line-mute');
+    audio.volume > 0 ? audio.volume = 0 : audio.volume = (volumeRange.value / 100).toFixed(2);
+};
+
+// Изменение громкости звука при перемещении ползунка
 volumeRange.onchange = () => {
     audio.volume = (volumeRange.value / 100).toFixed(2);
-    console.log(volumeRange.value);
+};
+
+// Изменение иконки при снижении громкости до 0
+audio.onvolumechange = () => {
+    audio.volume == 0 ? volumUpLine.classList.add('volume-up-line-mute') : volumUpLine.classList.remove('volume-up-line-mute');
 };
