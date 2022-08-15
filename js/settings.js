@@ -17,8 +17,8 @@ let languageSettings = localStorage.getItem('switchLanguage');
 const state = {
     name: ['Settings', 'Настройки'],
     photoSource: 'github',
-    blocks: ['Language', 'Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audio', 'Todolist'],
-    blocksRu: ['Язык', 'Время', 'Дата', 'Приветствие', 'Цитата', 'Погода', 'Аудио', 'Дела']
+    blocks: ['Language', 'Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audio', 'Todolist', 'ImageSource'],
+    blocksRu: ['Язык', 'Время', 'Дата', 'Приветствие', 'Цитата', 'Погода', 'Аудио', 'Дела', 'Источник изображений']
 };
 
 // Присваиваем значение value каждому треку в соответствии с положением в playList
@@ -31,8 +31,19 @@ function createSettings() {
 
         blocksSettings.classList.add('settings__item');
         blocksName.classList.add('settings-name');
-        setValue.classList.add('value-' + state.blocks[index].toLowerCase());
-        switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase(), 'switch-btn');
+
+        if (el == 'ImageSource') {
+            setValue.classList.add('value-' + state.blocks[index].toLowerCase());
+            switchBtn.innerHTML = `
+            <input name="api" type="radio" value="GitHub"> GitHub
+            <input name="api" type="radio" value="UnsplashAPI"> UnsplashAPI
+            <input name="api" type="radio" value="FlickrAPI" checked> FlickrAPI
+            <input class="apiBtn" type="submit" value="Submit">`;
+            switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase());
+        } else {
+            setValue.classList.add('value-' + state.blocks[index].toLowerCase());
+            switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase(), 'switch-btn');
+        }
 
         // Название блока с настройками по умолчанию Eng
         languageSettings == 'en' ? blocksName.textContent = el : blocksName.textContent = state.blocksRu[index]; // Название блока с настройками Rus
@@ -101,10 +112,12 @@ function getLocalStorageSettings() {
         } else if (localStorage.getItem(elSet) == 1 || localStorage.getItem(elSet) == 'en') {
             if (elSet == 'switchLanguage') {
                 switchBtn.textContent = 'Eng';
+                settingsHeader.textContent = state.name[0];
             }
             settingsArray.property[index].classList.add('switch-on');
         } else {
             switchBtn.textContent = 'Rus';
+            settingsHeader.textContent = state.name[1];
             settingsArray.property[index].classList.remove('switch-on');
         }
     });
