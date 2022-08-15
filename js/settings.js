@@ -2,6 +2,7 @@ const settingsButton = document.querySelector('.settings');
 const settingsPanel = document.querySelector('.settings__panel');
 const settingsBlock = document.querySelector('.settings__block');
 const settingsHeader = document.querySelector('.settings-header');
+const popup = document.querySelector('.pop__up');
 
 const timeSetting = document.querySelector('.time');
 const dateSetting = document.querySelector('.date');
@@ -35,10 +36,9 @@ function createSettings() {
         if (el == 'ImageSource') {
             setValue.classList.add('value-' + state.blocks[index].toLowerCase());
             switchBtn.innerHTML = `
-            <input name="api" type="radio" value="GitHub"> GitHub
-            <input name="api" type="radio" value="UnsplashAPI"> UnsplashAPI
-            <input name="api" type="radio" value="FlickrAPI" checked> FlickrAPI
-            <input class="apiBtn" type="submit" value="Submit">`;
+            <label class="apiImg"><input class="apiImg" name="api" type="radio" value="GitHub" checked> GitHub</label>
+            <label class="apiImg"><input class="apiImg" name="api" type="radio" value="UnsplashAPI"> UnsplashAPI</label>
+            <label class="apiImg"><input class="apiImg" name="api" type="radio" value="FlickrAPI"> FlickrAPI</label>`;
             switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase());
         } else {
             setValue.classList.add('value-' + state.blocks[index].toLowerCase());
@@ -186,8 +186,16 @@ switchTodolist.onclick = function () {
     this.classList.contains('switch-on') ? setLocalStorageSettings('switchTodolist', 1) : setLocalStorageSettings('switchTodolist', 0);
 };
 
-// Открываем панель
+// Открываем панель / закрыть панель
 settingsButton.onclick = () => {
     settingsPanel.classList.toggle('settings__panel_active');
+    popup.classList.toggle('hidden__pop-up');
 };
 
+
+popup.addEventListener('click', (event) => {
+    if (event.target.classList.contains('pop__up')) {
+        popup.classList.toggle('hidden__pop-up');
+        settingsPanel.classList.toggle('settings__panel_active');
+    }
+});
