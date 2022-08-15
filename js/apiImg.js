@@ -42,11 +42,6 @@ apiImgRadio.onclick = function (event) {
     if (event.target.value) {
         setLocalStorageSettings('imageSource', event.target.value);
     }
-
-    if (event.target.value == 'UnsplashAPI' || event.target.value == 'FlickrAPI') {
-        inputTagsImgBlock.classList.remove('hidden');
-    } else {
-        inputTagsImgBlock.classList.add('hidden');
-    }
-    // setImageSourseDefault();
+    event.target.value == 'UnsplashAPI' || event.target.value == 'FlickrAPI' ? inputTagsImgBlock.classList.remove('hidden') : inputTagsImgBlock.classList.add('hidden');
+    // getTagsImg();
 };
