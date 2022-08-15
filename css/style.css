@@ -355,7 +355,7 @@ body {
 
 .settings__panel {
   position: fixed;
-  width: 500px;
+  width: 425px;
   height: 440px;
   background-color: #293241;
   padding: 15px;
@@ -408,6 +408,10 @@ body {
 }
 
 .apiImg {
+  cursor: pointer;
+}
+
+.apiImgLabel {
   cursor: pointer;
 }
 

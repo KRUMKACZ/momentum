@@ -36,9 +36,9 @@ function createSettings() {
         if (el == 'ImageSource') {
             setValue.classList.add('value-' + state.blocks[index].toLowerCase());
             switchBtn.innerHTML = `
-            <label class="apiImg"><input class="apiImg" name="api" type="radio" value="GitHub" checked> GitHub</label>
-            <label class="apiImg"><input class="apiImg" name="api" type="radio" value="UnsplashAPI"> UnsplashAPI</label>
-            <label class="apiImg"><input class="apiImg" name="api" type="radio" value="FlickrAPI"> FlickrAPI</label>`;
+            <label class="apiImgLabel"><input id="GitHub" class="apiImg" name="api" type="radio" value="GitHub"> GitHub</label>
+            <label class="apiImgLabel"><input id="UnsplashAPI" class="apiImg" name="api" type="radio" value="UnsplashAPI"> UnsplashAPI</label>
+            <label class="apiImgLabel"><input id="FlickrAPI" class="apiImg" name="api" type="radio" value="FlickrAPI"> FlickrAPI</label>`;
             switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase());
         } else {
             setValue.classList.add('value-' + state.blocks[index].toLowerCase());

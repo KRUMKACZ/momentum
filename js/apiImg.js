@@ -1,8 +1,22 @@
 const apiImgRadio = document.querySelector('.switch-imagesource');
-//console.log(apiImgRadio);
+let imagesource = localStorage.getItem('imageSource');
+
+function setImageSourseDefault() {
+    let radioDefault;
+    if (imagesource == null) {
+        setLocalStorageSettings('imageSource', 'GitHub');
+        radioDefault = document.getElementById('GitHub');
+        radioDefault.setAttribute('checked', 'true');
+    } else {
+        radioDefault = document.getElementById(`${imagesource}`);
+        radioDefault.setAttribute('checked', 'true');
+    }
+}
+setImageSourseDefault();
 
 apiImgRadio.onclick = function (event) {
-    console.log(event.target.value);
+    if (event.target.value) {
+        setLocalStorageSettings('imageSource', event.target.value);
+    }
+   // setImageSourseDefault();
 };
-
-//let languageSettings = localStorage.getItem('switchLanguage');
