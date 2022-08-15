@@ -2,8 +2,6 @@ const body = document.body;
 const slidePrev = document.querySelector('.slide-prev');
 const slideNext = document.querySelector('.slide-next');
 
-console.log(hours);
-
 let randomNum;
 function getRandomNum(min, max) {
     return randomNum = Math.floor(Math.random() * (max - min + 1)) + min;

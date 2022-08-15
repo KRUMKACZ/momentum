@@ -2,6 +2,7 @@ const settingsButton = document.querySelector('.settings');
 const settingsPanel = document.querySelector('.settings__panel');
 const settingsBlock = document.querySelector('.settings__block');
 const settingsHeader = document.querySelector('.settings-header');
+const popup = document.querySelector('.pop__up');
 
 const timeSetting = document.querySelector('.time');
 const dateSetting = document.querySelector('.date');
@@ -17,8 +18,8 @@ let languageSettings = localStorage.getItem('switchLanguage');
 const state = {
     name: ['Settings', 'Настройки'],
     photoSource: 'github',
-    blocks: ['Language', 'Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audio', 'Todolist'],
-    blocksRu: ['Язык', 'Время', 'Дата', 'Приветствие', 'Цитата', 'Погода', 'Аудио', 'Дела']
+    blocks: ['Language', 'Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audio', 'Todolist', 'ImageSource'],
+    blocksRu: ['Язык', 'Время', 'Дата', 'Приветствие', 'Цитата', 'Погода', 'Аудио', 'Дела', 'Источник изображений']
 };
 
 // Присваиваем значение value каждому треку в соответствии с положением в playList
@@ -31,8 +32,18 @@ function createSettings() {
 
         blocksSettings.classList.add('settings__item');
         blocksName.classList.add('settings-name');
-        setValue.classList.add('value-' + state.blocks[index].toLowerCase());
-        switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase(), 'switch-btn');
+
+        if (el == 'ImageSource') {
+            setValue.classList.add('value-' + state.blocks[index].toLowerCase());
+            switchBtn.innerHTML = `
+            <label class="apiImgLabel"><input id="GitHub" class="apiImg" name="api" type="radio" value="GitHub"> GitHub</label>
+            <label class="apiImgLabel"><input id="UnsplashAPI" class="apiImg" name="api" type="radio" value="UnsplashAPI"> UnsplashAPI</label>
+            <label class="apiImgLabel"><input id="FlickrAPI" class="apiImg" name="api" type="radio" value="FlickrAPI"> FlickrAPI</label>`;
+            switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase());
+        } else {
+            setValue.classList.add('value-' + state.blocks[index].toLowerCase());
+            switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase(), 'switch-btn');
+        }
 
         // Название блока с настройками по умолчанию Eng
         languageSettings == 'en' ? blocksName.textContent = el : blocksName.textContent = state.blocksRu[index]; // Название блока с настройками Rus
@@ -101,10 +112,12 @@ function getLocalStorageSettings() {
         } else if (localStorage.getItem(elSet) == 1 || localStorage.getItem(elSet) == 'en') {
             if (elSet == 'switchLanguage') {
                 switchBtn.textContent = 'Eng';
+                settingsHeader.textContent = state.name[0];
             }
             settingsArray.property[index].classList.add('switch-on');
         } else {
             switchBtn.textContent = 'Rus';
+            settingsHeader.textContent = state.name[1];
             settingsArray.property[index].classList.remove('switch-on');
         }
     });
@@ -173,8 +186,16 @@ switchTodolist.onclick = function () {
     this.classList.contains('switch-on') ? setLocalStorageSettings('switchTodolist', 1) : setLocalStorageSettings('switchTodolist', 0);
 };
 
-// Открываем панель
+// Открываем панель / закрыть панель
 settingsButton.onclick = () => {
     settingsPanel.classList.toggle('settings__panel_active');
+    popup.classList.toggle('hidden__pop-up');
 };
 
+
+popup.addEventListener('click', (event) => {
+    if (event.target.classList.contains('pop__up')) {
+        popup.classList.toggle('hidden__pop-up');
+        settingsPanel.classList.toggle('settings__panel_active');
+    }
+});
