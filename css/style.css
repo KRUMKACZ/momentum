@@ -11,7 +11,8 @@
 }
 
 body {
-  min-width: 390px;
+  width: 96%;
+  min-width: 380px;
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
@@ -540,7 +541,28 @@ body {
   }
 
   .quote__item {
-    font-size: 14px;
+    font-size: 12px;
+  }
+
+  .settings__panel {
+    width: 375px;
+    height: 495px;
+  }
+
+  .switch-imagesource {
+    display: flex;
+    flex-flow: column wrap;
+    width: 150px;
+    justify-content: space-between;
+    align-items: normal;
+  }
+
+  .settings__panel_active {
+    transform: translate(2%, -1%)  !important;
+  }
+
+  .settings__panel {
+    transform: translate(-110%, -1%);
   }
 
 }

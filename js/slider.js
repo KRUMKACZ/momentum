@@ -39,6 +39,7 @@ function setBg() {
     img.src = `https://raw.githubusercontent.com/Viruss-git/momentum-img/assets/images/${periodDay}/${String(randomNum).padStart(2, '0')}.jpg`;
     img.addEventListener('load', function () {
         document.body.style.backgroundImage = `url(${img.src})`;
+        document.body.style.backgroundRepeat = 'no-repeat';
     });
 }
 
