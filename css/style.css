@@ -394,6 +394,21 @@ body {
   align-items: center;
 }
 
+.tagInputImg {
+  border: none;
+  border-left: 6px solid darkcyan;
+  padding-left: 6px;
+  width: 100%;
+  height: 20px;
+  font-size: 14px;
+  border-radius: 3px;
+  font-style: italic;
+}
+
+.tagInputImg:focus {
+  outline: none;
+}
+
 .apiBtn {
   background-color: #118c4e;
   /* Green */
