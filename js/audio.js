@@ -164,9 +164,9 @@ volumUpLine.onclick = () => {
 };
 
 // Изменение громкости звука при перемещении ползунка
-volumeRange.onchange = () => {
+volumeRange.addEventListener('mousemove', () => {
     audio.volume = (volumeRange.value / 100).toFixed(2);
-};
+});
 
 // Изменение иконки при снижении громкости до 0
 audio.onvolumechange = () => {

@@ -11,7 +11,8 @@
 }
 
 body {
-  min-width: 390px;
+  width: 96%;
+  min-width: 380px;
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
@@ -356,7 +357,7 @@ body {
 .settings__panel {
   position: fixed;
   width: 425px;
-  height: 440px;
+  height: 475px;
   background-color: #293241;
   padding: 15px;
   border-radius: 8px;
@@ -392,6 +393,21 @@ body {
 .settingsName {
   display: flex;
   align-items: center;
+}
+
+.tagInputImg {
+  border: none;
+  border-left: 6px solid darkcyan;
+  padding-left: 6px;
+  width: 100%;
+  height: 20px;
+  font-size: 14px;
+  border-radius: 3px;
+  font-style: italic;
+}
+
+.tagInputImg:focus {
+  outline: none;
 }
 
 .apiBtn {
@@ -525,7 +541,28 @@ body {
   }
 
   .quote__item {
-    font-size: 14px;
+    font-size: 12px;
+  }
+
+  .settings__panel {
+    width: 375px;
+    height: 495px;
+  }
+
+  .switch-imagesource {
+    display: flex;
+    flex-flow: column wrap;
+    width: 150px;
+    justify-content: space-between;
+    align-items: normal;
+  }
+
+  .settings__panel_active {
+    transform: translate(2%, -1%)  !important;
+  }
+
+  .settings__panel {
+    transform: translate(-110%, -1%);
   }
 
 }

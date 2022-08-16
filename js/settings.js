@@ -18,8 +18,8 @@ let languageSettings = localStorage.getItem('switchLanguage');
 const state = {
     name: ['Settings', 'Настройки'],
     photoSource: 'github',
-    blocks: ['Language', 'Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audio', 'Todolist', 'ImageSource'],
-    blocksRu: ['Язык', 'Время', 'Дата', 'Приветствие', 'Цитата', 'Погода', 'Аудио', 'Дела', 'Источник изображений']
+    blocks: ['Language', 'Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audio', 'Todolist', 'ImageSource', 'TagPhoto'],
+    blocksRu: ['Язык', 'Время', 'Дата', 'Приветствие', 'Цитата', 'Погода', 'Аудио', 'Дела', 'Источник изображений', 'Теги для изображений']
 };
 
 // Присваиваем значение value каждому треку в соответствии с положением в playList
@@ -36,9 +36,14 @@ function createSettings() {
         if (el == 'ImageSource') {
             setValue.classList.add('value-' + state.blocks[index].toLowerCase());
             switchBtn.innerHTML = `
-            <label class="apiImgLabel"><input id="GitHub" class="apiImg" name="api" type="radio" value="GitHub"> GitHub</label>
-            <label class="apiImgLabel"><input id="UnsplashAPI" class="apiImg" name="api" type="radio" value="UnsplashAPI"> UnsplashAPI</label>
-            <label class="apiImgLabel"><input id="FlickrAPI" class="apiImg" name="api" type="radio" value="FlickrAPI"> FlickrAPI</label>`;
+            <input id="GitHub" class="apiImg" name="api" type="radio" value="GitHub"><label for="GitHub" class="apiImgLabel">GitHub</label>
+            <input id="UnsplashAPI" class="apiImg" name="api" type="radio" value="UnsplashAPI"><label for="UnsplashAPI" class="apiImgLabel">UnsplashAPI</label>
+            <input id="FlickrAPI" class="apiImg" name="api" type="radio" value="FlickrAPI"><label for="FlickrAPI" class="apiImgLabel">FlickrAPI</label>`;
+            switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase());
+        } else if (el == 'TagPhoto') {
+            blocksSettings.classList.add('inputTagsImg', 'hidden');
+            setValue.classList.add('value-' + state.blocks[index].toLowerCase());
+            switchBtn.innerHTML = `<input type="text" class="tagInputImg">`;
             switchBtn.classList.add('switch-' + state.blocks[index].toLowerCase());
         } else {
             setValue.classList.add('value-' + state.blocks[index].toLowerCase());

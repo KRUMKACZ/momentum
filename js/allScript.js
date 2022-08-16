@@ -1,12 +1,11 @@
 let changeLanguageClick = document.querySelector('.switch-language');
+let userName = document.querySelector('.name'); // Находим элемент ввода имени
 
 // Сохранение введенного имени в Local Storage
 function setLocalStorage() {
-    let userName = document.querySelector('.name'); // Находим элемент ввода имени
     localStorage.setItem('userName', userName.value); // Сохраняем введенные данные
 }
 window.addEventListener('beforeunload', setLocalStorage);
-
 
 function getLocalStorage() {
     let userName = document.querySelector('.name'); // Находим элемент ввода имени
