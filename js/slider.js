@@ -18,24 +18,25 @@ function getRandomNum(min, max) {
 // Возвращаем приветствие в зависимости от времени суток
 function getImg() {
     if (hours >= 6 && hours < 12) {
-        getRandomNum(1, 5);
+        periodDay = 'morning';
     }
     if (hours >= 12 && hours < 18) {
-        getRandomNum(6, 10);
+        periodDay = 'afternoon';
     }
     if (hours >= 18 && hours < 24) {
-        getRandomNum(11, 15);
+        periodDay = 'evening';
     }
     if (hours >= 0 && hours < 6) {
-        getRandomNum(16, 20);
+        periodDay = 'night';
     }
+    getRandomNum(0, 20);
 }
 getImg();
 
 
 function setBg() {
     const img = new Image();
-    img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/evening/${String(randomNum).padStart(2, '0')}.jpg`;
+    img.src = `https://raw.githubusercontent.com/Viruss-git/momentum-img/assets/images/${periodDay}/${String(randomNum).padStart(2, '0')}.jpg`;
     img.addEventListener('load', function () {
         document.body.style.backgroundImage = `url(${img.src})`;
     });
