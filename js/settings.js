@@ -15,6 +15,10 @@ const audioSetting = document.querySelector('.player');
 
 let languageSettings = localStorage.getItem('switchLanguage');
 
+if (languageSettings == null) {
+    localStorage.setItem('switchLanguage', 'en');
+}
+
 const state = {
     name: ['Settings', 'Настройки'],
     photoSource: 'github',

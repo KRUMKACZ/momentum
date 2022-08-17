@@ -10,29 +10,6 @@ const sizeImgFlickr = 'url_h';
 
 const imgSourgeAPI = localStorage.getItem('imageSource');
 
-let randomNum;
-function getRandomNum(min, max) {
-    return randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Возвращаем приветствие в зависимости от времени суток
-function getImg() {
-    if (hours >= 6 && hours < 12) {
-        periodDay = 'morning';
-    }
-    if (hours >= 12 && hours < 18) {
-        periodDay = 'afternoon';
-    }
-    if (hours >= 18 && hours < 24) {
-        periodDay = 'evening';
-    }
-    if (hours >= 0 && hours < 6) {
-        periodDay = 'night';
-    }
-    getRandomNum(0, 20);
-}
-getImg();
-
 
 function setBg() {
     const img = new Image();
@@ -40,13 +17,15 @@ function setBg() {
     img.addEventListener('load', function () {
         document.body.style.backgroundImage = `url(${img.src})`;
         document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundSize = 'cover';
     });
 }
 
 async function getImageUnsplash() {
     getTagImgLocalStorege();
     const img = new Image();
-    const url = `https://api.unsplash.com/photos/random?orientation=${orientationImg}&query=${unsplasTagImg}&client_id=${unsplashKey}`;
+    const url = `https://api.unsplash.com/photos/random?orientation=${orientationImg}&query=${tagImg}&client_id=${unsplashKey}`;
+    console.log(url);
     const res = await fetch(url);
     const data = await res.json();
     img.src = data.urls.regular;
@@ -57,18 +36,30 @@ async function getImageUnsplash() {
 }
 
 let countFlickr = 0;
+let dataFlickrAPI;
 async function flickrAPI() {
     getTagImgLocalStorege();
     const img = new Image();
-    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${unsplasTagImg}&extras=${sizeImgFlickr}&format=json&nojsoncallback=1`;
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${tagImg}&extras=${sizeImgFlickr}&format=json&nojsoncallback=1`;
+    console.log(url);
     const res = await fetch(url);
-    const data = await res.json();
-    img.src = data.photos.photo[countFlickr].url_h;
+    dataFlickrAPI = await res.json();
+    img.src = dataFlickrAPI.photos.photo[countFlickr].url_h;
     img.addEventListener('load', function () {
         document.body.style.backgroundImage = `url(${img.src})`;
         document.body.style.backgroundSize = 'cover';
     });
 }
+
+function nextPrevFlickrAPI() {
+    const img = new Image();
+    img.src = dataFlickrAPI.photos.photo[countFlickr].url_h;
+    img.addEventListener('load', function () {
+        document.body.style.backgroundImage = `url(${img.src})`;
+        document.body.style.backgroundSize = 'cover';
+    });
+}
+
 
 function getSlidePrev() {
     let imgSourgeAPI = localStorage.getItem('imageSource');
@@ -92,7 +83,7 @@ function getSlidePrev() {
         } else {
             countFlickr--;
         }
-        flickrAPI(countFlickr);
+        nextPrevFlickrAPI(countFlickr);
     }
 }
 
@@ -119,7 +110,7 @@ function getSlideNext() {
         } else {
             countFlickr++;
         }
-        flickrAPI(countFlickr);
+        nextPrevFlickrAPI(countFlickr);
     }
 
 }

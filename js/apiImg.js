@@ -3,7 +3,32 @@ let inputTagsImgBlock = document.querySelector('.inputTagsImg');
 let tagInputImg = document.querySelector('.tagInputImg');
 let imageSource = localStorage.getItem('imageSource');
 let tagsImg = localStorage.getItem('tagsImg');
-let unsplasTagImg;
+let tagImg;
+
+
+let randomNum;
+function getRandomNum(min, max) {
+    return randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Возвращаем приветствие в зависимости от времени суток
+function getImg() {
+    if (hours >= 6 && hours < 12) {
+        periodDay = 'morning';
+    }
+    if (hours >= 12 && hours < 18) {
+        periodDay = 'afternoon';
+    }
+    if (hours >= 18 && hours < 24) {
+        periodDay = 'evening';
+    }
+    if (hours >= 0 && hours < 6) {
+        periodDay = 'night';
+    }
+    getRandomNum(0, 20);
+    return periodDay;
+}
+getImg();
 
 function setImageSourseDefault() {
     let radioDefault;
@@ -51,10 +76,10 @@ if (tagsImg) {
 
 function getTagImgLocalStorege() {
     if (localStorage.getItem('tagsImg')) {
-        unsplasTagImg = localStorage.getItem('tagsImg');
+        tagImg = localStorage.getItem('tagsImg');
     } else {
-        unsplasTagImg = 'morning';
-        localStorage.setItem('tagsImg', unsplasTagImg);
+        tagImg = getImg();
+        localStorage.setItem('tagsImg', tagImg);
         getTagsImg();
     }
 }
