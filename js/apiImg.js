@@ -40,9 +40,6 @@ tagInputImg.addEventListener('keyup', event => {
 });
 
 
-
-
-
 function getTagsImg() {
     tagsImg = localStorage.getItem('tagsImg');
     tagInputImg.value = tagsImg;
