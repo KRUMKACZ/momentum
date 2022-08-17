@@ -44,6 +44,7 @@ function setBg() {
 }
 
 async function getImageUnsplash() {
+    getTagImgLocalStorege();
     const img = new Image();
     const url = `https://api.unsplash.com/photos/random?orientation=${orientationImg}&query=${unsplasTagImg}&client_id=${unsplashKey}`;
     const res = await fetch(url);
@@ -57,6 +58,7 @@ async function getImageUnsplash() {
 
 let countFlickr = 0;
 async function flickrAPI() {
+    getTagImgLocalStorege();
     const img = new Image();
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrKey}&tags=${unsplasTagImg}&extras=${sizeImgFlickr}&format=json&nojsoncallback=1`;
     const res = await fetch(url);
