@@ -37,7 +37,7 @@ function getGreeting(getTimeAndDate) {
     let arrWelcome = [];
     language == 'en-En' ? arrWelcome = arrWelcomeEn : arrWelcome = arrWelcomeRu;
     if (hours >= 6 && hours < 12) {
-        return arrWelcome[1];
+        return arrWelcome[0];
     }
     if (hours >= 12 && hours < 18) {
         return arrWelcome[1];
