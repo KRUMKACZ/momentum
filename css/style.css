@@ -11,7 +11,7 @@
 }
 
 body {
-  width: 96%;
+  width: 99%;
   min-width: 380px;
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
@@ -558,7 +558,7 @@ body {
   }
 
   .settings__panel_active {
-    transform: translate(2%, -1%)  !important;
+    transform: translate(2%, -1%) !important;
   }
 
   .settings__panel {
